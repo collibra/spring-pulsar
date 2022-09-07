@@ -26,10 +26,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.beans.ConstructorProperties;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -294,7 +296,43 @@ class PulsarTemplateTests implements PulsarTestContainerSupport {
 
 	}
 
-	record Foo(String foo, String bar) {
+	static class Foo {
+
+		private final String foo;
+
+		private final String bar;
+
+		@ConstructorProperties({ "foo", "bar" })
+		Foo(String foo, String bar) {
+			this.foo = foo;
+			this.bar = bar;
+		}
+
+		public String getFoo() {
+			return foo;
+		}
+
+		public String getBar() {
+			return bar;
+		}
+
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) {
+				return true;
+			}
+			if (!(o instanceof Foo)) {
+				return false;
+			}
+			Foo foo1 = (Foo) o;
+			return Objects.equals(foo, foo1.foo) && Objects.equals(bar, foo1.bar);
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(foo, bar);
+		}
+
 	}
 
 }

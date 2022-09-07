@@ -204,7 +204,8 @@ public abstract class PulsarMessagingMessageListenerAdapter<V> {
 
 	private Type extractGenericParameterTypFromMethodParameter(MethodParameter methodParameter) {
 		Type genericParameterType = methodParameter.getGenericParameterType();
-		if (genericParameterType instanceof ParameterizedType parameterizedType) {
+		if (genericParameterType instanceof ParameterizedType) {
+			var parameterizedType = (ParameterizedType) genericParameterType;
 			if (parameterizedType.getRawType().equals(org.springframework.messaging.Message.class)) {
 				genericParameterType = ((ParameterizedType) genericParameterType).getActualTypeArguments()[0];
 			}
@@ -234,7 +235,8 @@ public abstract class PulsarMessagingMessageListenerAdapter<V> {
 	}
 
 	private boolean parameterIsType(Type parameterType, Type type) {
-		if (parameterType instanceof ParameterizedType parameterizedType) {
+		if (parameterType instanceof ParameterizedType) {
+			var parameterizedType = (ParameterizedType) parameterType;
 			Type rawType = parameterizedType.getRawType();
 			if (rawType.equals(type)) {
 				return true;
@@ -244,7 +246,8 @@ public abstract class PulsarMessagingMessageListenerAdapter<V> {
 	}
 
 	private boolean isMessageWithNoTypeInfo(Type parameterType) {
-		if (parameterType instanceof ParameterizedType parameterizedType) {
+		if (parameterType instanceof ParameterizedType) {
+			var parameterizedType = (ParameterizedType) parameterType;
 			Type rawType = parameterizedType.getRawType();
 			if (rawType.equals(org.springframework.messaging.Message.class)) {
 				return parameterizedType.getActualTypeArguments()[0] instanceof WildcardType;

@@ -50,7 +50,7 @@ import org.junit.jupiter.api.Test;
  */
 abstract class PulsarProducerFactoryTests implements PulsarTestContainerSupport {
 
-	protected final Schema<String> schema = Schema.STRING;
+	protected final static Schema<String> schema = Schema.STRING;
 
 	protected PulsarClient pulsarClient;
 

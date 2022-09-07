@@ -17,7 +17,6 @@
 package org.springframework.pulsar.listener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -254,7 +253,7 @@ public class DefaultPulsarMessageListenerContainer<T> extends AbstractPulsarMess
 			}
 			if (!currentProperties.containsKey("topicNames")) {
 				final String[] topics = this.containerProperties.getTopics();
-				final Set<String> listenerDefinedTopics = new HashSet<>(Arrays.stream(topics).toList());
+				final Set<String> listenerDefinedTopics = new HashSet<>(List.of(topics));
 				if (!listenerDefinedTopics.isEmpty()) {
 					currentProperties.put("topicNames", listenerDefinedTopics);
 				}

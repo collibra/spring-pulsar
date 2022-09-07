@@ -20,18 +20,33 @@ import org.apache.pulsar.common.naming.TopicDomain;
 
 /**
  * Model class for a Pulsar topic.
- *
+ * <p>
  * Use the {@link PulsarTopicBuilder} to create instances like this:
  *
  * <pre>{@code
  * 	PulsarTopic topic = PulsarTopic.builder("topic-name").build();
  * }</pre>
- * @param topicName the topic name
- * @param numberOfPartitions the number of partitions, or 0 for non-partitioned topics
  *
  * @author Alexander Preuß
  */
-public record PulsarTopic(String topicName, int numberOfPartitions) {
+public class PulsarTopic {
+
+	private final String topicName;
+
+	private final int numberOfPartitions;
+
+	public PulsarTopic(String topicName, int numberOfPartitions) {
+		this.topicName = topicName;
+		this.numberOfPartitions = numberOfPartitions;
+	}
+
+	public String getTopicName() {
+		return this.topicName;
+	}
+
+	public int getNumberOfPartitions() {
+		return this.numberOfPartitions;
+	}
 
 	public static PulsarTopicBuilder builder(String topicName) {
 		return new PulsarTopicBuilder(topicName);
@@ -50,7 +65,7 @@ public record PulsarTopic(String topicName, int numberOfPartitions) {
 	 * @return {@link TopicComponents}
 	 */
 	public TopicComponents getComponents() {
-		String[] splitTopic = this.topicName().split("/");
+		String[] splitTopic = this.getTopicName().split("/");
 		if (splitTopic.length == 1) { // e.g. 'my-topic'
 			return new TopicComponents(TopicDomain.persistent, "public", "default", splitTopic[0]);
 		}
@@ -76,12 +91,41 @@ public record PulsarTopic(String topicName, int numberOfPartitions) {
 
 	/**
 	 * Model class for the individual identifying components of a Pulsar topic.
-	 * @param domain the topic domain
-	 * @param tenant the topic tenant
-	 * @param namespace the topic namespace
-	 * @param name the topic name
+	 *
 	 */
-	record TopicComponents(TopicDomain domain, String tenant, String namespace, String name) {
+	public class TopicComponents {
+
+		private final TopicDomain domain;
+
+		private final String tenant;
+
+		private final String namespace;
+
+		private final String name;
+
+		public TopicDomain getDomain() {
+			return this.domain;
+		}
+
+		public String getTenant() {
+			return this.tenant;
+		}
+
+		public String getNamespace() {
+			return this.namespace;
+		}
+
+		public String getName() {
+			return this.name;
+		}
+
+		public TopicComponents(TopicDomain domain, String tenant, String namespace, String name) {
+			this.domain = domain;
+			this.tenant = tenant;
+			this.namespace = namespace;
+			this.name = name;
+		}
 
 	}
+
 }

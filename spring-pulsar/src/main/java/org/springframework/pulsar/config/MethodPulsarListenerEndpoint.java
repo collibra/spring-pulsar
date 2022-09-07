@@ -114,6 +114,7 @@ public class MethodPulsarListenerEndpoint<V> extends AbstractPulsarListenerEndpo
 		this.messageHandlerMethodFactory = messageHandlerMethodFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected PulsarMessagingMessageListenerAdapter<V> createMessageListener(PulsarMessageListenerContainer container,
 			@Nullable MessageConverter messageConverter) {
@@ -150,38 +151,61 @@ public class MethodPulsarListenerEndpoint<V> extends AbstractPulsarListenerEndpo
 		final SchemaType schemaType = pulsarContainerProperties.getSchemaType();
 		if (schemaType != SchemaType.NONE) {
 			switch (schemaType) {
-				case STRING -> pulsarContainerProperties.setSchema(Schema.STRING);
-				case BYTES -> pulsarContainerProperties.setSchema(Schema.BYTES);
-				case INT8 -> pulsarContainerProperties.setSchema(Schema.INT8);
-				case INT16 -> pulsarContainerProperties.setSchema(Schema.INT16);
-				case INT32 -> pulsarContainerProperties.setSchema(Schema.INT32);
-				case INT64 -> pulsarContainerProperties.setSchema(Schema.INT64);
-				case BOOLEAN -> pulsarContainerProperties.setSchema(Schema.BOOL);
-				case DATE -> pulsarContainerProperties.setSchema(Schema.DATE);
-				case DOUBLE -> pulsarContainerProperties.setSchema(Schema.DOUBLE);
-				case FLOAT -> pulsarContainerProperties.setSchema(Schema.FLOAT);
-				case INSTANT -> pulsarContainerProperties.setSchema(Schema.INSTANT);
-				case LOCAL_DATE -> pulsarContainerProperties.setSchema(Schema.LOCAL_DATE);
-				case LOCAL_DATE_TIME -> pulsarContainerProperties.setSchema(Schema.LOCAL_DATE_TIME);
-				case LOCAL_TIME -> pulsarContainerProperties.setSchema(Schema.LOCAL_TIME);
-				case JSON -> {
-					Schema<?> messageSchema = getMessageSchema(messageParameter, JSONSchema::of);
-					pulsarContainerProperties.setSchema(messageSchema);
-				}
-				case AVRO -> {
-					Schema<?> messageSchema = getMessageSchema(messageParameter, AvroSchema::of);
-					pulsarContainerProperties.setSchema(messageSchema);
-				}
-				case PROTOBUF -> {
-					@SuppressWarnings("unchecked")
-					Schema<?> messageSchema = getMessageSchema(messageParameter,
+				case STRING:
+					pulsarContainerProperties.setSchema(Schema.STRING);
+					break;
+				case BYTES:
+					pulsarContainerProperties.setSchema(Schema.BYTES);
+					break;
+				case INT8:
+					pulsarContainerProperties.setSchema(Schema.INT8);
+					break;
+				case INT16:
+					pulsarContainerProperties.setSchema(Schema.INT16);
+					break;
+				case INT32:
+					pulsarContainerProperties.setSchema(Schema.INT32);
+					break;
+				case INT64:
+					pulsarContainerProperties.setSchema(Schema.INT64);
+					break;
+				case BOOLEAN:
+					pulsarContainerProperties.setSchema(Schema.BOOL);
+					break;
+				case DATE:
+					pulsarContainerProperties.setSchema(Schema.DATE);
+					break;
+				case DOUBLE:
+					pulsarContainerProperties.setSchema(Schema.DOUBLE);
+					break;
+				case FLOAT:
+					pulsarContainerProperties.setSchema(Schema.FLOAT);
+					break;
+				case INSTANT:
+					pulsarContainerProperties.setSchema(Schema.INSTANT);
+					break;
+				case LOCAL_DATE:
+					pulsarContainerProperties.setSchema(Schema.LOCAL_DATE);
+					break;
+				case LOCAL_DATE_TIME:
+					pulsarContainerProperties.setSchema(Schema.LOCAL_DATE_TIME);
+					break;
+				case LOCAL_TIME:
+					pulsarContainerProperties.setSchema(Schema.LOCAL_TIME);
+					break;
+				case JSON:
+					setPropertiesSchema(messageParameter, pulsarContainerProperties, JSONSchema::of);
+					break;
+				case AVRO:
+					setPropertiesSchema(messageParameter, pulsarContainerProperties, AvroSchema::of);
+					break;
+				case PROTOBUF:
+					setPropertiesSchema(messageParameter, pulsarContainerProperties,
 							(c -> ProtobufSchema.of((Class<? extends GeneratedMessageV3>) c)));
-					pulsarContainerProperties.setSchema(messageSchema);
-				}
-				case KEY_VALUE -> {
-					Schema<?> messageSchema = getMessageKeyValueSchema(messageParameter);
-					pulsarContainerProperties.setSchema(messageSchema);
-				}
+					break;
+				case KEY_VALUE:
+					setPropertiesSchemaWithKeyValues(messageParameter, pulsarContainerProperties);
+					break;
 			}
 		}
 		else {
@@ -202,6 +226,18 @@ public class MethodPulsarListenerEndpoint<V> extends AbstractPulsarListenerEndpo
 		container.setPulsarConsumerErrorHandler(this.pulsarConsumerErrorHandler);
 
 		return messageListener;
+	}
+
+	private void setPropertiesSchemaWithKeyValues(MethodParameter messageParameter,
+			PulsarContainerProperties pulsarContainerProperties) {
+		Schema<?> messageSchema = getMessageKeyValueSchema(messageParameter);
+		pulsarContainerProperties.setSchema(messageSchema);
+	}
+
+	private void setPropertiesSchema(MethodParameter messageParameter,
+			PulsarContainerProperties pulsarContainerProperties, Function<Class<?>, Schema<?>> schemaFactory) {
+		Schema<?> messageSchema = getMessageSchema(messageParameter, schemaFactory);
+		pulsarContainerProperties.setSchema(messageSchema);
 	}
 
 	private Schema<?> getMessageSchema(MethodParameter messageParameter, Function<Class<?>, Schema<?>> schemaFactory) {

@@ -78,7 +78,7 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 	@Test
 	void deadLetterPolicyAppliedOnChildContainer() throws Exception {
 		PulsarListenerMockComponents env = setupListenerMockComponents(SubscriptionType.Shared);
-		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer();
+		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer;
 		DeadLetterPolicy deadLetterPolicy = DeadLetterPolicy.builder().maxRedeliverCount(5).deadLetterTopic("dlq-topic")
 				.retryLetterTopic("retry-topic").build();
 		concurrentContainer.setDeadLetterPolicy(deadLetterPolicy);
@@ -92,7 +92,7 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 	@Test
 	void nackRedeliveryBackoffAppliedOnChildContainer() throws Exception {
 		PulsarListenerMockComponents env = setupListenerMockComponents(SubscriptionType.Shared);
-		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer();
+		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer;
 		RedeliveryBackoff redeliveryBackoff = MultiplierRedeliveryBackoff.builder().minDelayMs(1000)
 				.maxDelayMs(5 * 1000).build();
 		concurrentContainer.setNegativeAckRedeliveryBackoff(redeliveryBackoff);
@@ -106,7 +106,7 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 	@Test
 	void ackTimeoutRedeliveryBackoffAppliedOnChildContainer() throws Exception {
 		PulsarListenerMockComponents env = setupListenerMockComponents(SubscriptionType.Exclusive);
-		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer();
+		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer;
 		RedeliveryBackoff redeliveryBackoff = MultiplierRedeliveryBackoff.builder().minDelayMs(1000)
 				.maxDelayMs(5 * 1000).build();
 		concurrentContainer.setAckTimeoutRedeliveryBackoff(redeliveryBackoff);
@@ -121,7 +121,7 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	void pulsarConsumerErrorHandlerAppliedOnChildContainer() throws Exception {
 		PulsarListenerMockComponents env = setupListenerMockComponents(SubscriptionType.Shared);
-		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer();
+		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer;
 
 		PulsarConsumerErrorHandler<String> pulsarConsumerErrorHandler = new DefaultPulsarConsumerErrorHandler(
 				mock(PulsarMessageRecovererFactory.class), mock(BackOff.class));
@@ -137,7 +137,7 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	void observationConfigAppliedOnChildContainer() throws Exception {
 		PulsarListenerMockComponents env = setupListenerMockComponents(SubscriptionType.Shared);
-		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer();
+		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer;
 
 		PulsarListenerObservationConvention customObservationConvention = mock(
 				PulsarListenerObservationConvention.class);
@@ -155,9 +155,9 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 	@SuppressWarnings("unchecked")
 	void basicConcurrencyTesting() throws Exception {
 		PulsarListenerMockComponents env = setupListenerMockComponents(SubscriptionType.Failover);
-		PulsarConsumerFactory<String> pulsarConsumerFactory = env.consumerFactory();
-		Consumer<String> consumer = env.consumer();
-		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer();
+		PulsarConsumerFactory<String> pulsarConsumerFactory = env.consumerFactory;
+		Consumer<String> consumer = env.consumer;
+		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer;
 
 		concurrentContainer.setConcurrency(3);
 
@@ -171,7 +171,7 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 	@Test
 	void exclusiveSubscriptionMustUseSingleThread() throws Exception {
 		PulsarListenerMockComponents env = setupListenerMockComponents(SubscriptionType.Exclusive);
-		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer();
+		ConcurrentPulsarMessageListenerContainer<String> concurrentContainer = env.concurrentContainer;
 
 		concurrentContainer.setConcurrency(3);
 
@@ -202,8 +202,21 @@ public class ConcurrentPulsarMessageListenerContainerTests {
 		return new PulsarListenerMockComponents(pulsarConsumerFactory, consumer, concurrentContainer);
 	}
 
-	private record PulsarListenerMockComponents(PulsarConsumerFactory<String> consumerFactory,
-			Consumer<String> consumer, ConcurrentPulsarMessageListenerContainer<String> concurrentContainer) {
+	private class PulsarListenerMockComponents {
+
+		final PulsarConsumerFactory<String> consumerFactory;
+
+		final Consumer<String> consumer;
+
+		final ConcurrentPulsarMessageListenerContainer<String> concurrentContainer;
+
+		PulsarListenerMockComponents(PulsarConsumerFactory<String> consumerFactory, Consumer<String> consumer,
+				ConcurrentPulsarMessageListenerContainer<String> concurrentContainer) {
+			this.consumerFactory = consumerFactory;
+			this.consumer = consumer;
+			this.concurrentContainer = concurrentContainer;
+		}
+
 	}
 
 }

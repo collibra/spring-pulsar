@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import org.apache.pulsar.client.admin.PulsarAdmin;
 import org.apache.pulsar.client.api.PulsarClient;
@@ -83,12 +84,12 @@ public class ObservationIntegrationTests extends SampleTestRunner implements Pul
 			SpansAssert.assertThat(finishedSpans).haveSameTraceId().hasSize(4);
 
 			List<FinishedSpan> producerSpans = finishedSpans.stream()
-					.filter(span -> span.getKind().equals(Kind.PRODUCER)).toList();
+					.filter(span -> span.getKind().equals(Kind.PRODUCER)).collect(Collectors.toList());
 			SpanAssert.assertThat(producerSpans.get(0)).hasTag("spring.pulsar.template.name", "pulsarTemplate");
 			SpanAssert.assertThat(producerSpans.get(1)).hasTag("spring.pulsar.template.name", "pulsarTemplate");
 
 			List<FinishedSpan> consumerSpans = finishedSpans.stream()
-					.filter(span -> span.getKind().equals(Kind.CONSUMER)).toList();
+					.filter(span -> span.getKind().equals(Kind.CONSUMER)).collect(Collectors.toList());
 			SpanAssert.assertThat(consumerSpans.get(0)).hasTagWithKey("spring.pulsar.listener.id");
 			assertThat(consumerSpans.get(0).getTags().get("spring.pulsar.listener.id")).isIn("obs1-id-0", "obs2-id-0");
 			SpanAssert.assertThat(consumerSpans.get(1)).hasTagWithKey("spring.pulsar.listener.id");

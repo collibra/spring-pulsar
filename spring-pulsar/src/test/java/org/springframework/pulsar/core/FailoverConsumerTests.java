@@ -18,7 +18,6 @@ package org.springframework.pulsar.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.Serial;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -94,7 +93,6 @@ class FailoverConsumerTests implements PulsarTestContainerSupport {
 
 	static class FooRouter implements MessageRouter {
 
-		@Serial
 		private static final long serialVersionUID = -1L;
 
 		@Override
@@ -106,7 +104,6 @@ class FailoverConsumerTests implements PulsarTestContainerSupport {
 
 	static class BarRouter implements MessageRouter {
 
-		@Serial
 		private static final long serialVersionUID = -1L;
 
 		@Override
@@ -118,7 +115,6 @@ class FailoverConsumerTests implements PulsarTestContainerSupport {
 
 	static class BuzzRouter implements MessageRouter {
 
-		@Serial
 		private static final long serialVersionUID = -1L;
 
 		@Override

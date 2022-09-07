@@ -64,7 +64,7 @@ import org.springframework.util.StringUtils;
  * plugin is applied:
  *
  * <ul>
- * <li>The project is configured with source and target compatibility of 17
+ * <li>The project is configured with source and target compatibility of 11
  * <li>{@link SpringJavaFormatPlugin Spring Java Format}, {@link CheckstylePlugin
  * Checkstyle}, {@link TestFailuresPlugin Test Failures}, and {@link TestRetryPlugin Test
  * Retry} plugins are applied
@@ -108,7 +108,7 @@ import org.springframework.util.StringUtils;
  */
 public class JavaConventionsPlugin implements Plugin<Project> {
 
-	private static final String SOURCE_AND_TARGET_COMPATIBILITY = "17";
+	private static final String SOURCE_AND_TARGET_COMPATIBILITY = "11";
 
 	@Override
 	public void apply(Project project) {
@@ -199,7 +199,7 @@ public class JavaConventionsPlugin implements Plugin<Project> {
 	private void configureJavadocConventions(Project project) {
 		project.getTasks().withType(Javadoc.class, (javadoc) -> {
 			CoreJavadocOptions options = (CoreJavadocOptions) javadoc.getOptions();
-			options.source("17");
+			options.source("11");
 			options.encoding("UTF-8");
 			options.addStringOption("Xdoclint:none", "-quiet");
 		});
@@ -220,15 +220,15 @@ public class JavaConventionsPlugin implements Plugin<Project> {
 				compile.setSourceCompatibility(SOURCE_AND_TARGET_COMPATIBILITY);
 				compile.setTargetCompatibility(SOURCE_AND_TARGET_COMPATIBILITY);
 			}
-			else if (buildingWithJava17(project)) {
+			else if (buildingWithJava11(project)) {
 				args.addAll(Arrays.asList("-Werror", "-Xlint:unchecked", "-Xlint:deprecation", "-Xlint:rawtypes",
 						"-Xlint:varargs"));
 			}
 		});
 	}
 
-	private boolean buildingWithJava17(Project project) {
-		return !project.hasProperty("toolchainVersion") && JavaVersion.current() == JavaVersion.VERSION_17;
+	private boolean buildingWithJava11(Project project) {
+		return !project.hasProperty("toolchainVersion") && JavaVersion.current() == JavaVersion.VERSION_11;
 	}
 
 	private void configureSpringJavaFormat(Project project) {

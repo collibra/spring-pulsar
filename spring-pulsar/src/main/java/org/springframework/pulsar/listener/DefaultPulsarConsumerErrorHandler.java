@@ -89,14 +89,24 @@ public class DefaultPulsarConsumerErrorHandler<T> implements PulsarConsumerError
 		if (pair == null) {
 			return null;
 		}
-		return (Message<T>) pair.message();
+		return (Message<T>) pair.message;
 	}
 
 	public void clearMessage() {
 		this.backOffExecutionThreadLocal.remove();
 	}
 
-	private record Pair(Message<?> message, BackOffExecution backOffExecution) {
-	};
+	private class Pair {
+
+		final Message<?> message;
+
+		final BackOffExecution backOffExecution;
+
+		Pair(Message<?> message, BackOffExecution backOffExecution) {
+			this.message = message;
+			this.backOffExecution = backOffExecution;
+		}
+
+	}
 
 }

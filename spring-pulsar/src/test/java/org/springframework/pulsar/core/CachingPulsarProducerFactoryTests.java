@@ -254,7 +254,7 @@ class CachingPulsarProducerFactoryTests extends PulsarProducerFactoryTests {
 	}
 
 	@Nested
-	class ProducerCacheKeyTests {
+	static class ProducerCacheKeyTests {
 
 		@Test
 		void nullSchemaIsNotAllowed() {

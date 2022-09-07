@@ -36,6 +36,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 import org.apache.commons.logging.LogFactory;
 import org.apache.pulsar.client.api.DeadLetterPolicy;
@@ -189,7 +190,7 @@ public class PulsarListenerAnnotationBeanPostProcessor<V>
 	private void buildEnhancer() {
 		if (this.applicationContext != null) {
 			List<AnnotationEnhancer> enhancers = this.applicationContext
-					.getBeanProvider(AnnotationEnhancer.class, false).orderedStream().toList();
+					.getBeanProvider(AnnotationEnhancer.class, false).orderedStream().collect(Collectors.toList());
 			if (!enhancers.isEmpty()) {
 				this.enhancer = (attrs, element) -> {
 					for (AnnotationEnhancer enh : enhancers) {
@@ -480,8 +481,9 @@ public class PulsarListenerAnnotationBeanPostProcessor<V>
 						loadProperty(properties, prop, prop);
 					}
 				}
-				else if (value instanceof Collection<?> values) {
-					if (values.size() > 0 && values.iterator().next() instanceof String) {
+				else if (value instanceof Collection<?>) {
+					List<Object> values = Collections.singletonList(value);
+					if (values.iterator().next() instanceof String) {
 						for (String prop : (Collection<String>) value) {
 							loadProperty(properties, prop, prop);
 						}
@@ -622,7 +624,8 @@ public class PulsarListenerAnnotationBeanPostProcessor<V>
 		}
 		PulsarListeners anns = AnnotationUtils.findAnnotation(clazz, PulsarListeners.class);
 		if (anns != null) {
-			listeners.addAll(Arrays.stream(anns.value()).map(anno -> enhance(clazz, anno)).toList());
+			listeners
+					.addAll(Arrays.stream(anns.value()).map(anno -> enhance(clazz, anno)).collect(Collectors.toList()));
 		}
 		return listeners;
 	}
@@ -636,7 +639,8 @@ public class PulsarListenerAnnotationBeanPostProcessor<V>
 		}
 		PulsarListeners anns = AnnotationUtils.findAnnotation(method, PulsarListeners.class);
 		if (anns != null) {
-			listeners.addAll(Arrays.stream(anns.value()).map(anno -> enhance(method, anno)).toList());
+			listeners.addAll(
+					Arrays.stream(anns.value()).map(anno -> enhance(method, anno)).collect(Collectors.toList()));
 		}
 		return listeners;
 	}

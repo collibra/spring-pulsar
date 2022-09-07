@@ -39,24 +39,47 @@ public final class SchemaUtils {
 
 	@SuppressWarnings("unchecked")
 	public static <T> Schema<T> getSchema(Class<?> messageClass, boolean returnDefault) {
-		return switch (messageClass.getName()) {
-			case "java.lang.String" -> (Schema<T>) Schema.STRING;
-			case "[B" -> (Schema<T>) Schema.BYTES;
-			case "java.lang.Byte", "byte" -> (Schema<T>) Schema.INT8;
-			case "java.lang.Short", "short" -> (Schema<T>) Schema.INT16;
-			case "java.lang.Integer", "int" -> (Schema<T>) Schema.INT32;
-			case "java.lang.Long", "long" -> (Schema<T>) Schema.INT64;
-			case "java.lang.Boolean", "boolean" -> (Schema<T>) Schema.BOOL;
-			case "java.nio.ByteBuffer" -> (Schema<T>) Schema.BYTEBUFFER;
-			case "java.util.Date" -> (Schema<T>) Schema.DATE;
-			case "java.lang.Double", "double" -> (Schema<T>) Schema.DOUBLE;
-			case "java.lang.Float", "float" -> (Schema<T>) Schema.FLOAT;
-			case "java.time.Instant" -> (Schema<T>) Schema.INSTANT;
-			case "java.time.LocalDate" -> (Schema<T>) Schema.LOCAL_DATE;
-			case "java.time.LocalDateTime" -> (Schema<T>) Schema.LOCAL_DATE_TIME;
-			case "java.time.LocalTime" -> (Schema<T>) Schema.LOCAL_TIME;
-			default -> (returnDefault ? (Schema<T>) Schema.BYTES : null);
-		};
+		switch (messageClass.getName()) {
+			case "java.lang.String":
+				return (Schema<T>) Schema.STRING;
+			case "[B":
+				return (Schema<T>) Schema.BYTES;
+			case "java.lang.Byte":
+			case "byte":
+				return (Schema<T>) Schema.INT8;
+			case "java.lang.Short":
+			case "short":
+				return (Schema<T>) Schema.INT16;
+			case "java.lang.Integer":
+			case "int":
+				return (Schema<T>) Schema.INT32;
+			case "java.lang.Long":
+			case "long":
+				return (Schema<T>) Schema.INT64;
+			case "java.lang.Boolean":
+			case "boolean":
+				return (Schema<T>) Schema.BOOL;
+			case "java.nio.ByteBuffer":
+				return (Schema<T>) Schema.BYTEBUFFER;
+			case "java.util.Date":
+				return (Schema<T>) Schema.DATE;
+			case "java.lang.Double":
+			case "double":
+				return (Schema<T>) Schema.DOUBLE;
+			case "java.lang.Float":
+			case "float":
+				return (Schema<T>) Schema.FLOAT;
+			case "java.time.Instant":
+				return (Schema<T>) Schema.INSTANT;
+			case "java.time.LocalDate":
+				return (Schema<T>) Schema.LOCAL_DATE;
+			case "java.time.LocalDateTime":
+				return (Schema<T>) Schema.LOCAL_DATE_TIME;
+			case "java.time.LocalTime":
+				return (Schema<T>) Schema.LOCAL_TIME;
+			default:
+				return (returnDefault ? (Schema<T>) Schema.BYTES : null);
+		}
 	}
 
 }

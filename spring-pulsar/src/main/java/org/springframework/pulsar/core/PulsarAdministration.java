@@ -100,12 +100,13 @@ public class PulsarAdministration
 	}
 
 	private String getTopicNamespaceIdentifier(PulsarTopic topic) {
-		return topic.getComponents().tenant() + "/" + topic.getComponents().namespace();
+		return topic.getComponents().getTenant() + "/" + topic.getComponents().getNamespace();
 	}
 
 	private List<String> getMatchingTopicPartitions(PulsarTopic topic, List<String> existingTopics) {
 		return existingTopics.stream()
-				.filter(existing -> existing.startsWith(topic.getFullyQualifiedTopicName() + "-partition-")).toList();
+				.filter(existing -> existing.startsWith(topic.getFullyQualifiedTopicName() + "-partition-"))
+				.collect(Collectors.toList());
 	}
 
 	private void createOrModifyTopicsIfNeeded(Collection<PulsarTopic> topics) {
@@ -140,12 +141,12 @@ public class PulsarAdministration
 						}
 						else {
 							int numberOfExistingPartitions = matchingPartitions.size();
-							if (numberOfExistingPartitions < topic.numberOfPartitions()) {
+							if (numberOfExistingPartitions < topic.getNumberOfPartitions()) {
 								this.logger.debug(() -> "Topic " + topic.getFullyQualifiedTopicName() + " found with "
 										+ numberOfExistingPartitions + " partitions.");
 								topicsToModify.add(topic);
 							}
-							else if (numberOfExistingPartitions > topic.numberOfPartitions()) {
+							else if (numberOfExistingPartitions > topic.getNumberOfPartitions()) {
 								throw new IllegalStateException("Topic " + topic.getFullyQualifiedTopicName()
 										+ " found with " + numberOfExistingPartitions
 										+ " partitions. Needs to be deleted first.");
@@ -174,10 +175,10 @@ public class PulsarAdministration
 				.map(PulsarTopic::getFullyQualifiedTopicName).collect(Collectors.joining(",")));
 		for (PulsarTopic topic : topicsToCreate) {
 			if (topic.isPartitioned()) {
-				admin.topics().createPartitionedTopic(topic.topicName(), topic.numberOfPartitions());
+				admin.topics().createPartitionedTopic(topic.getTopicName(), topic.getNumberOfPartitions());
 			}
 			else {
-				admin.topics().createNonPartitionedTopic(topic.topicName());
+				admin.topics().createNonPartitionedTopic(topic.getTopicName());
 			}
 		}
 	}
@@ -186,7 +187,7 @@ public class PulsarAdministration
 		this.logger.debug(() -> "Modifying topics: " + topicsToModify.stream()
 				.map(PulsarTopic::getFullyQualifiedTopicName).collect(Collectors.joining(",")));
 		for (PulsarTopic topic : topicsToModify) {
-			admin.topics().updatePartitionedTopic(topic.topicName(), topic.numberOfPartitions());
+			admin.topics().updatePartitionedTopic(topic.getTopicName(), topic.getNumberOfPartitions());
 		}
 	}
 

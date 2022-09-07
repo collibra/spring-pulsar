@@ -157,11 +157,22 @@ public class SpringPulsarBootApp {
 		}
 	}
 
-	record Foo(String foo, String bar) {
+	class Foo {
+
+		private final String foo;
+
+		private final String bar;
+
+		Foo(String foo, String bar) {
+			this.foo = foo;
+			this.bar = bar;
+		}
+
 		@Override
 		public String toString() {
 			return "Foo{" + "foo='" + this.foo + '\'' + ", bar='" + this.bar + '\'' + '}';
 		}
+
 	}
 
 }

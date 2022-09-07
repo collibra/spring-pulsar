@@ -39,8 +39,8 @@ public class PulsarTopicTests {
 		PulsarTopicBuilder builder = PulsarTopic.builder(topicName);
 		PulsarTopic topic = builder.build();
 
-		assertThat(topic.topicName()).isEqualTo(topicName);
-		assertThat(topic.numberOfPartitions()).isEqualTo(0);
+		assertThat(topic.getTopicName()).isEqualTo(topicName);
+		assertThat(topic.getNumberOfPartitions()).isEqualTo(0);
 	}
 
 	@Test
@@ -52,10 +52,10 @@ public class PulsarTopicTests {
 	@MethodSource("topicComponentsProvider")
 	void topicComponents(PulsarTopic topic, TopicDomain domain, String tenant, String namespace, String topicName) {
 		PulsarTopic.TopicComponents components = topic.getComponents();
-		assertThat(components.domain()).isEqualTo(domain);
-		assertThat(components.tenant()).isEqualTo(tenant);
-		assertThat(components.namespace()).isEqualTo(namespace);
-		assertThat(components.name()).isEqualTo(topicName);
+		assertThat(components.getDomain()).isEqualTo(domain);
+		assertThat(components.getTenant()).isEqualTo(tenant);
+		assertThat(components.getNamespace()).isEqualTo(namespace);
+		assertThat(components.getName()).isEqualTo(topicName);
 	}
 
 	private static Stream<Arguments> topicComponentsProvider() {
