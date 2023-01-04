@@ -19,6 +19,7 @@ package org.springframework.pulsar.core;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 import org.apache.commons.logging.LogFactory;
 import org.apache.pulsar.client.api.MessageId;
@@ -178,7 +179,7 @@ public class PulsarTemplate<T>
 		this.logger.trace(() -> String.format("Sending msg to '%s' topic", topicName));
 
 		PulsarMessageSenderContext senderContext = PulsarMessageSenderContext.newContext(topicName, this.beanName);
-		Observation observation = newObservation(senderContext);
+		Observation observation = newObservation(() -> senderContext);
 		try {
 			observation.start();
 			final Producer<T> producer = prepareProducerForSend(topic, message, messageRouter, producerCustomizer);
@@ -209,7 +210,7 @@ public class PulsarTemplate<T>
 		}
 	}
 
-	private Observation newObservation(PulsarMessageSenderContext senderContext) {
+	private Observation newObservation(Supplier<PulsarMessageSenderContext> senderContext) {
 		Observation observation;
 		if (!this.observationEnabled || this.observationRegistry == null) {
 			observation = Observation.NOOP;
