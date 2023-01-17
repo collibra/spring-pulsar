@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.pulsar.spring-docs-module'
 	id 'org.asciidoctor.jvm.convert'
+	id 'org.ajoberstar.git-publish' version "4.1.1"
 }
 
 description = 'Spring Pulsar Docs'
@@ -102,6 +103,23 @@ task asciidoctorPdf(type: org.asciidoctor.gradle.jvm.AsciidoctorTask) {
 	sources {
 		include "*.adoc"
 	}
+}
+
+gitPublish {
+	repoUri = 'https://github.com/collibra/spring-pulsar.git'
+	branch = 'docs'
+
+	contents {
+		from("${asciidoctor.outputDir}") {
+			into 'modules/ROOT/pages'
+		}
+	}
+
+	preserve {
+		exclude 'modules/ROOT/pages/**'
+	}
+
+	commitMessage = 'Publishing a new user guide'
 }
 
 task asciidoctorMultipage(type: org.asciidoctor.gradle.jvm.AsciidoctorTask) {
