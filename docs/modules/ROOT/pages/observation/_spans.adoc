@@ -1,0 +1,44 @@
+[[observability-spans]]
+=== Observability - Spans
+
+Below you can find a list of all spans declared by this project.
+
+[[observability-spans-listener-observation]]
+==== Listener Observation Span
+
+> Observation created when a Pulsar listener receives a message.
+
+**Span name** `spring.pulsar.listener` (defined by convention class `org.springframework.pulsar.observation.DefaultPulsarListenerObservationConvention`).
+
+Fully qualified name of the enclosing class `org.springframework.pulsar.observation.PulsarListenerObservation`.
+
+IMPORTANT: All tags must be prefixed with `spring.pulsar.listener` prefix!
+
+.Tag Keys
+|===
+|Name | Description
+|`spring.pulsar.listener.id`|Id of the listener container that received the message.
+|===
+
+
+
+[[observability-spans-template-observation]]
+==== Template Observation Span
+
+> Observation created when a Pulsar template sends a message.
+
+**Span name** `spring.pulsar.template` (defined by convention class `org.springframework.pulsar.observation.DefaultPulsarTemplateObservationConvention`).
+
+Fully qualified name of the enclosing class `org.springframework.pulsar.observation.PulsarTemplateObservation`.
+
+IMPORTANT: All tags must be prefixed with `spring.pulsar.template` prefix!
+
+.Tag Keys
+|===
+|Name | Description
+|`spring.pulsar.template.name`|Bean name of the template that sent the message.
+|===
+
+
+
+

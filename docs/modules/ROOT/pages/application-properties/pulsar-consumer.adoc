@@ -1,0 +1,119 @@
+[[appendix.application-properties.pulsar-consumer]]
+== Pulsar Consumer Properties
+[cols="4,3,3", options="header"]
+|===
+|Name|Description|Default Value
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.ack-timeout-millis]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.ack-timeout-millis,`+spring.pulsar.consumer.ack-timeout-millis+`>>
+|+++Timeout for unacked messages to be redelivered.+++
+|`+0+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.acknowledgements-group-time-micros]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.acknowledgements-group-time-micros,`+spring.pulsar.consumer.acknowledgements-group-time-micros+`>>
+|+++Time to group acknowledgements before sending them to the broker in microseconds.+++
+|`+100+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.auto-ack-oldest-chunked-message-on-queue-full]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.auto-ack-oldest-chunked-message-on-queue-full,`+spring.pulsar.consumer.auto-ack-oldest-chunked-message-on-queue-full+`>>
+|+++Whether to automatically drop outstanding un-acked messages if the queue is full.+++
+|`+true+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.auto-update-partitions]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.auto-update-partitions,`+spring.pulsar.consumer.auto-update-partitions+`>>
+|+++Whether the consumer auto-subscribes for partition increase. This is only for partitioned consumers.+++
+|`+true+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.consumer-name]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.consumer-name,`+spring.pulsar.consumer.consumer-name+`>>
+|+++Consumer name to identify a particular consumer from the topic stats.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.crypto-failure-action]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.crypto-failure-action,`+spring.pulsar.consumer.crypto-failure-action+`>>
+|+++Action the consumer will take in case of decryption failure.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.expire-time-of-incomplete-chunked-message-millis]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.expire-time-of-incomplete-chunked-message-millis,`+spring.pulsar.consumer.expire-time-of-incomplete-chunked-message-millis+`>>
+|+++Time to expire incomplete chunks if the consumer won't be able to receive all chunks before in milliseconds.+++
+|`+60000+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.max-pending-chunked-message]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.max-pending-chunked-message,`+spring.pulsar.consumer.max-pending-chunked-message+`>>
+|+++Maximum number of chunked messages to be kept in memory.+++
+|`+10+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.max-total-receiver-queue-size-across-partitions]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.max-total-receiver-queue-size-across-partitions,`+spring.pulsar.consumer.max-total-receiver-queue-size-across-partitions+`>>
+|+++Maximum number of messages that a consumer can be pushed at once from a broker across all partitions.+++
+|`+50000+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.negative-ack-redelivery-delay-micros]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.negative-ack-redelivery-delay-micros,`+spring.pulsar.consumer.negative-ack-redelivery-delay-micros+`>>
+|+++Delay before re-delivering messages that have failed to be processed in microseconds.+++
+|`+1+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.pattern-auto-discovery-period]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.pattern-auto-discovery-period,`+spring.pulsar.consumer.pattern-auto-discovery-period+`>>
+|+++Auto-discovery period for topics when topic pattern is used in minutes.+++
+|`+1+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.priority-level]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.priority-level,`+spring.pulsar.consumer.priority-level+`>>
+|+++Priority level for shared subscription consumers.+++
+|`+0+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.properties]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.properties,`+spring.pulsar.consumer.properties+`>>
+|+++Map of properties to add to the consumer.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.read-compacted]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.read-compacted,`+spring.pulsar.consumer.read-compacted+`>>
+|+++Whether to read messages from the compacted topic rather than the full message backlog.+++
+|`+false+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.receiver-queue-size]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.receiver-queue-size,`+spring.pulsar.consumer.receiver-queue-size+`>>
+|+++Number of messages that can be accumulated before the consumer calls "receive".+++
+|`+1000+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.regex-subscription-mode]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.regex-subscription-mode,`+spring.pulsar.consumer.regex-subscription-mode+`>>
+|+++Determines which topics the consumer should be subscribed to when using pattern subscriptions.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.replicate-subscription-state]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.replicate-subscription-state,`+spring.pulsar.consumer.replicate-subscription-state+`>>
+|+++Whether to replicate subscription state.+++
+|`+false+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.subscription-initial-position]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.subscription-initial-position,`+spring.pulsar.consumer.subscription-initial-position+`>>
+|+++Position where to initialize a newly created subscription.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.subscription-name]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.subscription-name,`+spring.pulsar.consumer.subscription-name+`>>
+|+++Subscription name for the consumer.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.subscription-type]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.subscription-type,`+spring.pulsar.consumer.subscription-type+`>>
+|+++Subscription type to be used when subscribing to a topic.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.tick-duration-millis]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.tick-duration-millis,`+spring.pulsar.consumer.tick-duration-millis+`>>
+|+++Precision for the ack timeout messages tracker in milliseconds.+++
+|`+1000+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.topics]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.topics,`+spring.pulsar.consumer.topics+`>>
+|+++Comma-separated list of topics the consumer subscribes to.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.consumer.topics-pattern]]<<application-properties.pulsar-consumer.spring.pulsar.consumer.topics-pattern,`+spring.pulsar.consumer.topics-pattern+`>>
+|+++Pattern for topics the consumer subscribes to.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.listener.ack-mode]]<<application-properties.pulsar-consumer.spring.pulsar.listener.ack-mode,`+spring.pulsar.listener.ack-mode+`>>
+|+++AckMode for acknowledgements. Allowed values are RECORD, BATCH, MANUAL.+++
+|
+
+|[[application-properties.pulsar-consumer.spring.pulsar.listener.batch-timeout-millis]]<<application-properties.pulsar-consumer.spring.pulsar.listener.batch-timeout-millis,`+spring.pulsar.listener.batch-timeout-millis+`>>
+|+++Number of milliseconds to wait for enough message to fill a batch request before timing out.+++
+|`+100+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.listener.max-num-bytes]]<<application-properties.pulsar-consumer.spring.pulsar.listener.max-num-bytes,`+spring.pulsar.listener.max-num-bytes+`>>
+|+++Max number of bytes in a single batch request.+++
+|`+0+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.listener.max-num-messages]]<<application-properties.pulsar-consumer.spring.pulsar.listener.max-num-messages,`+spring.pulsar.listener.max-num-messages+`>>
+|+++Max number of messages in a single batch request.+++
+|`+-1+`
+
+|[[application-properties.pulsar-consumer.spring.pulsar.listener.schema-type]]<<application-properties.pulsar-consumer.spring.pulsar.listener.schema-type,`+spring.pulsar.listener.schema-type+`>>
+|+++SchemaType of the consumed messages.+++
+|
+
+|===

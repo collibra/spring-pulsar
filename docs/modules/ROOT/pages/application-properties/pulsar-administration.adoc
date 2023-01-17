@@ -1,0 +1,63 @@
+[[appendix.application-properties.pulsar-administration]]
+== Pulsar Administration Properties
+[cols="4,3,3", options="header"]
+|===
+|Name|Description|Default Value
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.auth-params]]<<application-properties.pulsar-administration.spring.pulsar.administration.auth-params,`+spring.pulsar.administration.auth-params+`>>
+|+++Authentication parameter(s) as a JSON encoded string.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.auth-plugin-class-name]]<<application-properties.pulsar-administration.spring.pulsar.administration.auth-plugin-class-name,`+spring.pulsar.administration.auth-plugin-class-name+`>>
+|+++Fully qualified class name of the authentication plugin.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.authentication]]<<application-properties.pulsar-administration.spring.pulsar.administration.authentication,`+spring.pulsar.administration.authentication.*+`>>
+|+++Authentication parameter(s) as a map of parameter names to parameter values.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.service-url]]<<application-properties.pulsar-administration.spring.pulsar.administration.service-url,`+spring.pulsar.administration.service-url+`>>
+|+++Pulsar service URL for the admin endpoint.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.ssl-provider]]<<application-properties.pulsar-administration.spring.pulsar.administration.ssl-provider,`+spring.pulsar.administration.ssl-provider+`>>
+|+++Name of the security provider used for SSL connections.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-allow-insecure-connection]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-allow-insecure-connection,`+spring.pulsar.administration.tls-allow-insecure-connection+`>>
+|+++Whether the client accepts untrusted TLS certificates from the broker.+++
+|`+false+`
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-ciphers]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-ciphers,`+spring.pulsar.administration.tls-ciphers+`>>
+|+++Comma-separated list of cipher suites. This is a named combination of authentication, encryption, MAC and key exchange algorithm used to negotiate the security settings for a network connection using TLS or SSL network protocol. By default, all the available cipher suites are supported.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-hostname-verification-enable]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-hostname-verification-enable,`+spring.pulsar.administration.tls-hostname-verification-enable+`>>
+|+++Whether the hostname is validated when the proxy creates a TLS connection with brokers.+++
+|`+false+`
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-protocols]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-protocols,`+spring.pulsar.administration.tls-protocols+`>>
+|+++Comma-separated list of SSL protocols used to generate the SSLContext. Allowed values in recent JVMs are TLS, TLSv1.3, TLSv1.2 and TLSv1.1.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-certs-file-path]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-certs-file-path,`+spring.pulsar.administration.tls-trust-certs-file-path+`>>
+|+++Path to the trusted TLS certificate file.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-store-password]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-store-password,`+spring.pulsar.administration.tls-trust-store-password+`>>
+|+++Store password for the key store file.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-store-path]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-store-path,`+spring.pulsar.administration.tls-trust-store-path+`>>
+|+++Location of the trust store file.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-store-type]]<<application-properties.pulsar-administration.spring.pulsar.administration.tls-trust-store-type,`+spring.pulsar.administration.tls-trust-store-type+`>>
+|+++File format of the trust store file.+++
+|
+
+|[[application-properties.pulsar-administration.spring.pulsar.administration.use-key-store-tls]]<<application-properties.pulsar-administration.spring.pulsar.administration.use-key-store-tls,`+spring.pulsar.administration.use-key-store-tls+`>>
+|+++Enable KeyStore instead of PEM type configuration if TLS is enabled.+++
+|`+false+`
+
+|===

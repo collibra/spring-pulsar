@@ -1,0 +1,163 @@
+[[appendix.application-properties.pulsar-client]]
+== Pulsar Client Properties
+[cols="4,3,3", options="header"]
+|===
+|Name|Description|Default Value
+
+|[[application-properties.pulsar-client.spring.pulsar.client.auth-params]]<<application-properties.pulsar-client.spring.pulsar.client.auth-params,`+spring.pulsar.client.auth-params+`>>
+|+++Authentication parameter(s) as a JSON encoded string.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.auth-plugin-class-name]]<<application-properties.pulsar-client.spring.pulsar.client.auth-plugin-class-name,`+spring.pulsar.client.auth-plugin-class-name+`>>
+|+++Fully qualified class name of the authentication plugin.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.authentication]]<<application-properties.pulsar-client.spring.pulsar.client.authentication,`+spring.pulsar.client.authentication.*+`>>
+|+++Authentication parameter(s) as a map of parameter names to parameter values.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.connection-timeout-ms]]<<application-properties.pulsar-client.spring.pulsar.client.connection-timeout-ms,`+spring.pulsar.client.connection-timeout-ms+`>>
+|+++Duration to wait for a connection to a broker to be established in milliseconds.+++
+|`+10000+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.dns-lookup-bind-address]]<<application-properties.pulsar-client.spring.pulsar.client.dns-lookup-bind-address,`+spring.pulsar.client.dns-lookup-bind-address+`>>
+|+++DNS lookup bind address.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.dns-lookup-bind-port]]<<application-properties.pulsar-client.spring.pulsar.client.dns-lookup-bind-port,`+spring.pulsar.client.dns-lookup-bind-port+`>>
+|+++DNS lookup bind port.+++
+|`+0+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.enable-busy-wait]]<<application-properties.pulsar-client.spring.pulsar.client.enable-busy-wait,`+spring.pulsar.client.enable-busy-wait+`>>
+|+++Enables spin-waiting on executors and IO threads in order to reduce latency during context switches.+++
+|`+false+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.enable-transaction]]<<application-properties.pulsar-client.spring.pulsar.client.enable-transaction,`+spring.pulsar.client.enable-transaction+`>>
+|+++Enables transactions. To use this, start the transactionCoordinatorClient with the pulsar client.+++
+|`+false+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.initial-backoff-interval-nanos]]<<application-properties.pulsar-client.spring.pulsar.client.initial-backoff-interval-nanos,`+spring.pulsar.client.initial-backoff-interval-nanos+`>>
+|+++Initial backoff interval in nanoseconds.+++
+|`+100+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.keep-alive-interval-seconds]]<<application-properties.pulsar-client.spring.pulsar.client.keep-alive-interval-seconds,`+spring.pulsar.client.keep-alive-interval-seconds+`>>
+|+++Keep alive interval for broker-client connection in seconds.+++
+|`+30+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.listener-name]]<<application-properties.pulsar-client.spring.pulsar.client.listener-name,`+spring.pulsar.client.listener-name+`>>
+|+++Listener name for lookup. Clients can use listenerName to choose one of the listeners as the service URL to create a connection to the broker. To use this, "advertisedListeners" must be enabled on the broker.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.lookup-timeout-ms]]<<application-properties.pulsar-client.spring.pulsar.client.lookup-timeout-ms,`+spring.pulsar.client.lookup-timeout-ms+`>>
+|+++Client lookup timeout in milliseconds.+++
+|`+-1+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.max-backoff-interval-nanos]]<<application-properties.pulsar-client.spring.pulsar.client.max-backoff-interval-nanos,`+spring.pulsar.client.max-backoff-interval-nanos+`>>
+|+++Maximum backoff interval in nanoseconds.+++
+|`+30+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.max-concurrent-lookup-request]]<<application-properties.pulsar-client.spring.pulsar.client.max-concurrent-lookup-request,`+spring.pulsar.client.max-concurrent-lookup-request+`>>
+|+++Number of concurrent lookup-requests allowed to send on each broker-connection to prevent overload on broker.+++
+|`+5000+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.max-lookup-redirects]]<<application-properties.pulsar-client.spring.pulsar.client.max-lookup-redirects,`+spring.pulsar.client.max-lookup-redirects+`>>
+|+++Maximum number of times a lookup-request to a broker will be redirected.+++
+|`+20+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.max-lookup-request]]<<application-properties.pulsar-client.spring.pulsar.client.max-lookup-request,`+spring.pulsar.client.max-lookup-request+`>>
+|+++Number of max lookup-requests allowed on each broker-connection to prevent overload on broker.+++
+|`+50000+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.max-number-of-rejected-request-per-connection]]<<application-properties.pulsar-client.spring.pulsar.client.max-number-of-rejected-request-per-connection,`+spring.pulsar.client.max-number-of-rejected-request-per-connection+`>>
+|+++Maximum number of broker-rejected requests in a certain timeframe, after which the current connection is closed and a new connection is created by the client.+++
+|`+50+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.memory-limit-bytes]]<<application-properties.pulsar-client.spring.pulsar.client.memory-limit-bytes,`+spring.pulsar.client.memory-limit-bytes+`>>
+|+++Limit of direct memory that will be allocated by the client.+++
+|`+0+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.num-connections-per-broker]]<<application-properties.pulsar-client.spring.pulsar.client.num-connections-per-broker,`+spring.pulsar.client.num-connections-per-broker+`>>
+|+++Maximum number of connections that the client will open to a single broker.+++
+|`+1+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.num-io-threads]]<<application-properties.pulsar-client.spring.pulsar.client.num-io-threads,`+spring.pulsar.client.num-io-threads+`>>
+|+++Number of threads to be used for handling connections to brokers.+++
+|`+1+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.num-listener-threads]]<<application-properties.pulsar-client.spring.pulsar.client.num-listener-threads,`+spring.pulsar.client.num-listener-threads+`>>
+|+++Number of threads to be used for message listeners. The listener thread pool is shared across all the consumers and readers that are using a "listener" model to get messages. For a given consumer, the listener will always be invoked from the same thread, to ensure ordering.+++
+|`+1+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.operation-timeout-ms]]<<application-properties.pulsar-client.spring.pulsar.client.operation-timeout-ms,`+spring.pulsar.client.operation-timeout-ms+`>>
+|+++Client operation timeout in milliseconds.+++
+|`+30000+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.service-url]]<<application-properties.pulsar-client.spring.pulsar.client.service-url,`+spring.pulsar.client.service-url+`>>
+|+++Pulsar cluster URL to connect to a broker.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.socks5-proxy-address]]<<application-properties.pulsar-client.spring.pulsar.client.socks5-proxy-address,`+spring.pulsar.client.socks5-proxy-address+`>>
+|+++SOCKS5 proxy address.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.socks5-proxy-password]]<<application-properties.pulsar-client.spring.pulsar.client.socks5-proxy-password,`+spring.pulsar.client.socks5-proxy-password+`>>
+|+++SOCKS5 proxy password.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.socks5-proxy-username]]<<application-properties.pulsar-client.spring.pulsar.client.socks5-proxy-username,`+spring.pulsar.client.socks5-proxy-username+`>>
+|+++SOCKS5 proxy username.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.ssl-provider]]<<application-properties.pulsar-client.spring.pulsar.client.ssl-provider,`+spring.pulsar.client.ssl-provider+`>>
+|+++Name of the security provider used for SSL connections.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.stats-interval-seconds]]<<application-properties.pulsar-client.spring.pulsar.client.stats-interval-seconds,`+spring.pulsar.client.stats-interval-seconds+`>>
+|+++Interval between each stat info in seconds.+++
+|`+60+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-allow-insecure-connection]]<<application-properties.pulsar-client.spring.pulsar.client.tls-allow-insecure-connection,`+spring.pulsar.client.tls-allow-insecure-connection+`>>
+|+++Whether the client accepts untrusted TLS certificates from the broker.+++
+|`+false+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-ciphers]]<<application-properties.pulsar-client.spring.pulsar.client.tls-ciphers,`+spring.pulsar.client.tls-ciphers+`>>
+|+++Comma-separated list of cipher suites. This is a named combination of authentication, encryption, MAC and key exchange algorithm used to negotiate the security settings for a network connection using TLS or SSL network protocol. By default, all the available cipher suites are supported.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-hostname-verification-enable]]<<application-properties.pulsar-client.spring.pulsar.client.tls-hostname-verification-enable,`+spring.pulsar.client.tls-hostname-verification-enable+`>>
+|+++Whether the hostname is validated when the proxy creates a TLS connection with brokers.+++
+|`+false+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-protocols]]<<application-properties.pulsar-client.spring.pulsar.client.tls-protocols,`+spring.pulsar.client.tls-protocols+`>>
+|+++Comma-separated list of SSL protocols used to generate the SSLContext. Allowed values in recent JVMs are TLS, TLSv1.3, TLSv1.2 and TLSv1.1.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-trust-certs-file-path]]<<application-properties.pulsar-client.spring.pulsar.client.tls-trust-certs-file-path,`+spring.pulsar.client.tls-trust-certs-file-path+`>>
+|+++Path to the trusted TLS certificate file.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-trust-store-password]]<<application-properties.pulsar-client.spring.pulsar.client.tls-trust-store-password,`+spring.pulsar.client.tls-trust-store-password+`>>
+|+++Store password for the key store file.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-trust-store-path]]<<application-properties.pulsar-client.spring.pulsar.client.tls-trust-store-path,`+spring.pulsar.client.tls-trust-store-path+`>>
+|+++Location of the trust store file.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.tls-trust-store-type]]<<application-properties.pulsar-client.spring.pulsar.client.tls-trust-store-type,`+spring.pulsar.client.tls-trust-store-type+`>>
+|+++File format of the trust store file.+++
+|
+
+|[[application-properties.pulsar-client.spring.pulsar.client.use-key-store-tls]]<<application-properties.pulsar-client.spring.pulsar.client.use-key-store-tls,`+spring.pulsar.client.use-key-store-tls+`>>
+|+++Enable KeyStore instead of PEM type configuration if TLS is enabled.+++
+|`+false+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.use-tcp-no-delay]]<<application-properties.pulsar-client.spring.pulsar.client.use-tcp-no-delay,`+spring.pulsar.client.use-tcp-no-delay+`>>
+|+++Whether to use TCP no-delay flag on the connection, to disable Nagle algorithm.+++
+|`+true+`
+
+|[[application-properties.pulsar-client.spring.pulsar.client.use-tls]]<<application-properties.pulsar-client.spring.pulsar.client.use-tls,`+spring.pulsar.client.use-tls+`>>
+|+++Whether to use TLS encryption on the connection.+++
+|`+false+`
+
+|===

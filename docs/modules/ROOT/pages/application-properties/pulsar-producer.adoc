@@ -1,0 +1,83 @@
+[[appendix.application-properties.pulsar-producer]]
+== Pulsar Producer Properties
+[cols="4,3,3", options="header"]
+|===
+|Name|Description|Default Value
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.batching-enabled]]<<application-properties.pulsar-producer.spring.pulsar.producer.batching-enabled,`+spring.pulsar.producer.batching-enabled+`>>
+|+++Whether to automatically batch messages.+++
+|`+true+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.batching-max-messages]]<<application-properties.pulsar-producer.spring.pulsar.producer.batching-max-messages,`+spring.pulsar.producer.batching-max-messages+`>>
+|+++Maximum number of messages to be batched.+++
+|`+1000+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.batching-max-publish-delay-micros]]<<application-properties.pulsar-producer.spring.pulsar.producer.batching-max-publish-delay-micros,`+spring.pulsar.producer.batching-max-publish-delay-micros+`>>
+|+++Time period within which the messages sent will be batched in milliseconds.+++
+|`+1+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.block-if-queue-full]]<<application-properties.pulsar-producer.spring.pulsar.producer.block-if-queue-full,`+spring.pulsar.producer.block-if-queue-full+`>>
+|+++Whether the "send" and "sendAsync" methods should block if the outgoing message queue is full.+++
+|`+false+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.cache.expire-after-access]]<<application-properties.pulsar-producer.spring.pulsar.producer.cache.expire-after-access,`+spring.pulsar.producer.cache.expire-after-access+`>>
+|+++Time period to expire unused entries in the cache.+++
+|`+1m+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.cache.initial-capacity]]<<application-properties.pulsar-producer.spring.pulsar.producer.cache.initial-capacity,`+spring.pulsar.producer.cache.initial-capacity+`>>
+|+++Initial size of cache.+++
+|`+50+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.cache.maximum-size]]<<application-properties.pulsar-producer.spring.pulsar.producer.cache.maximum-size,`+spring.pulsar.producer.cache.maximum-size+`>>
+|+++Maximum size of cache (entries).+++
+|`+1000+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.chunking-enabled]]<<application-properties.pulsar-producer.spring.pulsar.producer.chunking-enabled,`+spring.pulsar.producer.chunking-enabled+`>>
+|+++Whether to split large-size messages into multiple chunks.+++
+|`+false+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.compression-type]]<<application-properties.pulsar-producer.spring.pulsar.producer.compression-type,`+spring.pulsar.producer.compression-type+`>>
+|+++Message compression type.+++
+|
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.crypto-failure-action]]<<application-properties.pulsar-producer.spring.pulsar.producer.crypto-failure-action,`+spring.pulsar.producer.crypto-failure-action+`>>
+|+++Action the producer will take in case of encryption failure.+++
+|
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.hashing-scheme]]<<application-properties.pulsar-producer.spring.pulsar.producer.hashing-scheme,`+spring.pulsar.producer.hashing-scheme+`>>
+|+++Message hashing scheme to choose the partition to which the message is published.+++
+|
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.initial-subscription-name]]<<application-properties.pulsar-producer.spring.pulsar.producer.initial-subscription-name,`+spring.pulsar.producer.initial-subscription-name+`>>
+|+++Name of the initial subscription of the topic.+++
+|
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.max-pending-messages]]<<application-properties.pulsar-producer.spring.pulsar.producer.max-pending-messages,`+spring.pulsar.producer.max-pending-messages+`>>
+|+++Maximum number of pending messages for the producer.+++
+|`+1000+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.max-pending-messages-across-partitions]]<<application-properties.pulsar-producer.spring.pulsar.producer.max-pending-messages-across-partitions,`+spring.pulsar.producer.max-pending-messages-across-partitions+`>>
+|+++Maximum number of pending messages across all the partitions.+++
+|`+50000+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.message-routing-mode]]<<application-properties.pulsar-producer.spring.pulsar.producer.message-routing-mode,`+spring.pulsar.producer.message-routing-mode+`>>
+|+++Message routing mode for a partitioned producer.+++
+|
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.producer-access-mode]]<<application-properties.pulsar-producer.spring.pulsar.producer.producer-access-mode,`+spring.pulsar.producer.producer-access-mode+`>>
+|+++Type of access to the topic the producer requires.+++
+|
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.producer-name]]<<application-properties.pulsar-producer.spring.pulsar.producer.producer-name,`+spring.pulsar.producer.producer-name+`>>
+|+++Name for the producer. If not assigned, a unique name is generated.+++
+|
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.send-timeout-ms]]<<application-properties.pulsar-producer.spring.pulsar.producer.send-timeout-ms,`+spring.pulsar.producer.send-timeout-ms+`>>
+|+++Time before a message has to be acknowledged by the broker in milliseconds.+++
+|`+30000+`
+
+|[[application-properties.pulsar-producer.spring.pulsar.producer.topic-name]]<<application-properties.pulsar-producer.spring.pulsar.producer.topic-name,`+spring.pulsar.producer.topic-name+`>>
+|+++Topic the producer will publish to.+++
+|
+
+|===
