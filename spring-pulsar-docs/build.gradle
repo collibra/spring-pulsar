@@ -1,7 +1,10 @@
 plugins {
 	id 'org.springframework.pulsar.spring-docs-module'
 	id 'org.asciidoctor.jvm.convert'
-	id 'org.ajoberstar.git-publish' version "4.1.1"
+	id 'org.ajoberstar.git-publish' version '4.1.1'
+}
+repositories {
+	maven { url 'https://repo.spring.io/snapshot' }
 }
 
 description = 'Spring Pulsar Docs'
@@ -105,23 +108,6 @@ task asciidoctorPdf(type: org.asciidoctor.gradle.jvm.AsciidoctorTask) {
 	}
 }
 
-gitPublish {
-	repoUri = 'https://github.com/collibra/spring-pulsar.git'
-	branch = 'docs'
-
-	contents {
-		from("${asciidoctor.outputDir}") {
-			into 'modules/ROOT/pages'
-		}
-	}
-
-	preserve {
-		exclude 'modules/ROOT/pages/**'
-	}
-
-	commitMessage = 'Publishing a new user guide'
-}
-
 task asciidoctorMultipage(type: org.asciidoctor.gradle.jvm.AsciidoctorTask) {
 	sources {
 		include "*.adoc"
@@ -188,14 +174,25 @@ artifacts {
 	archives docsZip
 }
 
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			artifact docsZip
-		}
-	}
+project.afterEvaluate {
+	project.tasks.artifactoryPublish.enabled(false)
 }
 
-artifactoryPublish {
-	publications(publishing.publications.mavenJava)
+gitPublish {
+	repoUri = 'https://github.com/collibra/spring-pulsar.git'
+	branch = 'docs'
+
+	contents {
+		from("$buildDir/docs/src/asciidoctor/asciidoc") {
+			into 'docs/modules/ROOT/pages'
+		}
+	}
+
+	preserve {
+		exclude 'docs/modules/ROOT/pages/**'
+	}
+
+	commitMessage = 'Publishing a new user guide'
 }
+
+tasks.named("gitPublishPush") { dependsOn(asciidoctor) }

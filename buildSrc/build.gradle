@@ -1,20 +1,22 @@
+import com.collibra.plugins.java.CollibraJavaPlugin
+
 plugins {
 	id "java-gradle-plugin"
-	id "java"
+	id 'com.collibra.plugins.java' version '16.0.2'
 	id "groovy"
 }
 
 repositories {
-	mavenCentral()
-	gradlePluginPortal()
 	maven { url 'https://repo.spring.io/release' }
 	maven { url 'https://repo.spring.io/milestone' }
 	if (version.endsWith('SNAPSHOT')) {
 		maven { url 'https://repo.spring.io/snapshot' }
 	}
-//
-//	maven { url 'https://repo.spring.io/plugins-release/' }
-//	maven { url 'https://plugins.gradle.org/m2/' }
+}
+
+tasks.wrapper {
+	distributionUrl = CollibraJavaPlugin.GRADLE_DISTRIBUTION_URL
+	distributionSha256Sum = CollibraJavaPlugin.GRADLE_DISTRIBUTION_SHA256SUM
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -79,14 +81,6 @@ gradlePlugin {
 		optionalDependenciesPlugin {
 			id = "org.springframework.pulsar.optional-dependencies"
 			implementationClass = "org.springframework.boot.gradle.optional.OptionalDependenciesPlugin"
-		}
-		rootProjectPlugin {
-			id = "org.springframework.pulsar.root-project"
-			implementationClass = "org.springframework.pulsar.gradle.RootProjectPlugin"
-		}
-		sonarQubeConventionsPlugin {
-			id = "org.springframework.pulsar.sonarqube"
-			implementationClass = "org.springframework.pulsar.gradle.SonarQubeConventionsPlugin"
 		}
 		springDocsModulePlugin {
 			id = "org.springframework.pulsar.spring-docs-module"

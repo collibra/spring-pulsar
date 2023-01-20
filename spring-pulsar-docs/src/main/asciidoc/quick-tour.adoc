@@ -1,7 +1,7 @@
 [[quick-tour]]
 === Quick Tour
 
-:spring-pulsar-version: 0.1.0-SNAPSHOT
+:spring-pulsar-version: 0.0.1-jdk11
 
 In this section, we will take a quick tour of Spring for Apache Pulsar.
 
@@ -12,16 +12,16 @@ The minimum supported versions for the underlying libraries required by the fram
 | Library | Version
 
 | Java
-| 17
+| 11
 
 | Apache Pulsar
 | 2.10.0
 
 | Spring Boot
-| 3.0.0
+| 2.7.3
 
 | Spring Framework
-| 6.0.0
+| 5.0.0
 
 | Gradle
 | 7.x (7.5 or later)
