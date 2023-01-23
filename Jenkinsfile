@@ -76,7 +76,7 @@ pipeline {
                     not {
                         expression { params.SKIP_PUBLISH == true }
                     }
-					branch 'use_jdk_11'
+					branch 'main_jdk11'
                 }
             }
             steps {
@@ -102,7 +102,7 @@ pipeline {
                 beforeAgent true
                 anyOf {
                     expression { params.FORCE_DOCS_PUBLISH == true }
-					branch 'use_jdk_11'
+					branch 'main_jdk11'
                 }
             }
             environment {
