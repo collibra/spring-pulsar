@@ -16,15 +16,11 @@
 
 package org.springframework.pulsar.autoconfigure;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-
 import java.util.concurrent.TimeUnit;
 
 import org.apache.pulsar.client.api.SubscriptionInitialPosition;
 import org.apache.pulsar.client.api.interceptor.ProducerInterceptor;
 import org.assertj.core.api.InstanceOfAssertFactories;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +47,9 @@ import org.springframework.pulsar.core.PulsarProducerFactory;
 import org.springframework.pulsar.core.PulsarTemplate;
 import org.springframework.pulsar.listener.DefaultPulsarMessageListenerContainer;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+
 /**
  * Autoconfiguration tests for {@link PulsarAutoConfiguration}.
  *
@@ -59,7 +58,6 @@ import org.springframework.pulsar.listener.DefaultPulsarMessageListenerContainer
  * @author Soby Chacko
  */
 @SuppressWarnings("unchecked")
-@Disabled("Disabled until ExceptionInInitializerError is fixed!")
 class PulsarAutoConfigurationTests {
 
 	private ApplicationContextRunner contextRunner = new ApplicationContextRunner()
