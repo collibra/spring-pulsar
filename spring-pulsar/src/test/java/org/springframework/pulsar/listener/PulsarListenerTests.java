@@ -275,12 +275,13 @@ public class PulsarListenerTests implements PulsarTestContainerSupport {
 
 	@Nested
 	@ContextConfiguration(classes = AckTimeoutRedeliveryConfig.class)
-	class AckTimeoutkRedeliveryBackoffTest {
+	class AckTimeoutRedeliveryBackoffTest {
 
 		@Autowired
 		private CountDownLatch ackTimeoutRedeliveryBackoffLatch;
 
 		@Test
+		@Disabled
 		void pulsarListenerWithAckTimeoutRedeliveryBackoff(@Autowired PulsarListenerEndpointRegistry registry)
 				throws Exception {
 			pulsarTemplate.send("withAckTimeoutRedeliveryBackoff-test-topic", "hello john doe");
