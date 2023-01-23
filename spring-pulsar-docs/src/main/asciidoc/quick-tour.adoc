@@ -15,7 +15,7 @@ The minimum supported versions for the underlying libraries required by the fram
 | 11
 
 | Apache Pulsar
-| 2.10.0
+| 2.11.0
 
 | Spring Boot
 | 2.7.3
