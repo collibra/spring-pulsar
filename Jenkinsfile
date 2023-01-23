@@ -1,4 +1,3 @@
-@Library('pipeline-library-helm-chart@3.0.2')
 @Library('pipeline-general@5.0.11') _
 
 String slackChannel = '#em-pipeline'
@@ -29,14 +28,7 @@ pipeline {
         stage('Setup') {
             steps {
                 ontrackSetup(
-                    autoValidationStampCreation: true,
-                    autoPromotions: [
-                        IRON: [validations: ['build']],
-                        GOLD: [
-                            validations: ['sonarqube', 'tagging', 'nexus'],
-                            promotions : ['IRON'],
-                        ]
-                    ]
+                    autoValidationStampCreation: true
                 )
             }
         }
@@ -49,6 +41,7 @@ pipeline {
             post {
                 always {
                     script {
+						ontrackCreateBuild env.BUILD_ID, env.GIT_COMMIT
                         def results = ontrackValidationForJUnit pattern: '**/build/test-results/**/*.xml', build: env.VERSION, validation: 'build'
                         slackStageNotification channel: slackChannel, results: results
                     }
