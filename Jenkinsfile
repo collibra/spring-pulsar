@@ -19,6 +19,7 @@ pipeline {
         NEXUS = credentials('nexus-gradle')
         GRADLE_ENTERPRISE_ACCESS_KEY = credentials('GRADLE_ENTERPRISE_ACCESS_KEY')
 		VERSION = '0.0.1-jdk11'
+		MAIN_BRANCH = 'main_jdk11'
     }
     parameters {
         booleanParam(name: 'SKIP_PUBLISH', defaultValue: false, description: 'skip publish step')
@@ -50,7 +51,7 @@ pipeline {
         }
         stage('Fossa Scan') {
             when {
-                branch 'main'
+                branch env.MAIN_BRANCH
             }
             steps {
                 script {
@@ -69,7 +70,7 @@ pipeline {
                     not {
                         expression { params.SKIP_PUBLISH == true }
                     }
-					branch 'main_jdk11'
+					branch env.MAIN_BRANCH
                 }
             }
             steps {
@@ -95,7 +96,7 @@ pipeline {
                 beforeAgent true
                 anyOf {
                     expression { params.FORCE_DOCS_PUBLISH == true }
-					branch 'main_jdk11'
+					branch env.MAIN_BRANCH
                 }
             }
             environment {
