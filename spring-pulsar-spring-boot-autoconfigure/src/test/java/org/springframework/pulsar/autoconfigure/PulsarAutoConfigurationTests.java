@@ -16,6 +16,9 @@
 
 package org.springframework.pulsar.autoconfigure;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+
 import java.util.concurrent.TimeUnit;
 
 import org.apache.pulsar.client.api.SubscriptionInitialPosition;
@@ -46,9 +49,6 @@ import org.springframework.pulsar.core.PulsarConsumerFactory;
 import org.springframework.pulsar.core.PulsarProducerFactory;
 import org.springframework.pulsar.core.PulsarTemplate;
 import org.springframework.pulsar.listener.DefaultPulsarMessageListenerContainer;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 
 /**
  * Autoconfiguration tests for {@link PulsarAutoConfiguration}.
