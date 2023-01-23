@@ -26,3 +26,7 @@ dependencies {
 test {
 	testLogging.showStandardStreams = true
 }
+
+configurations.implementation {
+	exclude group: 'ch.qos.logback', module: 'logback-classic'
+}
