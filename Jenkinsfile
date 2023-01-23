@@ -42,7 +42,7 @@ pipeline {
                 always {
                     script {
 						ontrackCreateBuild env.BUILD_ID, env.GIT_COMMIT
-                        def results = ontrackValidationForJUnit pattern: '**/build/test-results/**/*.xml', build: env.VERSION, validation: 'build'
+                        def results = ontrackValidationForJUnit pattern: '**/build/test-results/**/*.xml', build: env.BUILD_ID, validation: 'build'
                         slackStageNotification channel: slackChannel, results: results
                     }
                 }
@@ -59,7 +59,7 @@ pipeline {
             }
             post {
                 always {
-                    ontrackSetValidation build: env.VERSION, validation: 'fossaScan'
+                    ontrackSetValidation build: env.BUILD_ID, validation: 'fossaScan'
                 }
             }
         }
@@ -85,8 +85,8 @@ pipeline {
             post {
                 always {
                     slackStageNotification channel: slackChannel
-                    ontrackSetValidation build: env.VERSION, validation: 'tagging'
-                    ontrackSetValidation build: env.VERSION, validation: 'nexus'
+                    ontrackSetValidation build: env.BUILD_ID, validation: 'tagging'
+                    ontrackSetValidation build: env.BUILD_ID, validation: 'nexus'
                 }
             }
         }
