@@ -1,4 +1,0 @@
-* xref:preface.adoc[Preface]
-* xref:quick-tour.adoc[Quick Tour]
-* xref:pulsar.adoc[Reference]
-* xref:application-properties.adoc[]
