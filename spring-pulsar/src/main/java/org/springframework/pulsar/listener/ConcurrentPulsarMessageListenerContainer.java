@@ -30,8 +30,8 @@ import org.springframework.util.Assert;
 
 /**
  * Creates a concurrent execution context of {@link DefaultPulsarMessageListenerContainer}
- * instances based on the {@link #setConcurrency(int) concurrency}. Concurrency > 1 is not
- * allowed for exclusive subscriptions.
+ * instances based on the {@link #setConcurrency(int) concurrency}. Concurrency &gt; 1 is
+ * not allowed for exclusive subscriptions.
  *
  * @param <T> the payload type.
  * @author Soby Chacko
@@ -57,7 +57,7 @@ public class ConcurrentPulsarMessageListenerContainer<T> extends AbstractPulsarM
 	/**
 	 * The maximum number of concurrent {@link DefaultPulsarMessageListenerContainer}s
 	 * running. Messages from within the same partition will be processed sequentially.
-	 * Concurrency > 1 is not allowed for exclusive subscriptions.
+	 * Concurrency &gt; 1 is not allowed for exclusive subscriptions.
 	 * @param concurrency the concurrency.
 	 */
 	public void setConcurrency(int concurrency) {

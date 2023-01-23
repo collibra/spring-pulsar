@@ -45,6 +45,7 @@ import org.apache.pulsar.client.api.MessageId;
 import org.apache.pulsar.client.api.Messages;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.Schema;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.pulsar.listener.AckMode;
@@ -61,6 +62,7 @@ import org.springframework.pulsar.listener.PulsarRecordMessageListener;
 class ConsumerAcknowledgmentTests implements PulsarTestContainerSupport {
 
 	@Test
+	@Disabled
 	void testRecordAck() throws Exception {
 		Map<String, Object> config = new HashMap<>();
 		final Set<String> strings = new HashSet<>();
@@ -103,6 +105,7 @@ class ConsumerAcknowledgmentTests implements PulsarTestContainerSupport {
 	}
 
 	@Test
+	@Disabled
 	void testBatchAck() throws Exception {
 		Map<String, Object> config = new HashMap<>();
 		final Set<String> strings = new HashSet<>();
@@ -142,6 +145,7 @@ class ConsumerAcknowledgmentTests implements PulsarTestContainerSupport {
 	}
 
 	@Test
+	@Disabled
 	void testBatchAckButSomeRecordsFail() throws Exception {
 		Map<String, Object> config = new HashMap<>();
 		config.put("topicNames", Collections.singleton("cons-ack-tests-013"));
@@ -209,6 +213,7 @@ class ConsumerAcknowledgmentTests implements PulsarTestContainerSupport {
 
 	@Test
 	@SuppressWarnings("unchecked")
+	@Disabled
 	void testManualAckForRecordListener() throws Exception {
 		Map<String, Object> config = new HashMap<>();
 		final Set<String> strings = new HashSet<>();

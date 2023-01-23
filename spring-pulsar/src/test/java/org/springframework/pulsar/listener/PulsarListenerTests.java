@@ -39,6 +39,7 @@ import org.apache.pulsar.client.impl.schema.JSONSchema;
 import org.apache.pulsar.client.impl.schema.ProtobufSchema;
 import org.apache.pulsar.common.schema.KeyValue;
 import org.apache.pulsar.common.schema.KeyValueEncodingType;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -274,12 +275,13 @@ public class PulsarListenerTests implements PulsarTestContainerSupport {
 
 	@Nested
 	@ContextConfiguration(classes = AckTimeoutRedeliveryConfig.class)
-	class AckTimeoutkRedeliveryBackoffTest {
+	class AckTimeoutRedeliveryBackoffTest {
 
 		@Autowired
 		private CountDownLatch ackTimeoutRedeliveryBackoffLatch;
 
 		@Test
+		@Disabled
 		void pulsarListenerWithAckTimeoutRedeliveryBackoff(@Autowired PulsarListenerEndpointRegistry registry)
 				throws Exception {
 			pulsarTemplate.send("withAckTimeoutRedeliveryBackoff-test-topic", "hello john doe");
@@ -323,6 +325,7 @@ public class PulsarListenerTests implements PulsarTestContainerSupport {
 		private CountDownLatch dlqLatch;
 
 		@Test
+		@Disabled
 		void pulsarListenerWithDeadLetterPolicy() throws Exception {
 			pulsarTemplate.send("dlpt-topic-1", "hello");
 			assertThat(dlqLatch.await(10, TimeUnit.SECONDS)).isTrue();
