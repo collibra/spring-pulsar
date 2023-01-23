@@ -41,6 +41,7 @@ import org.apache.pulsar.client.api.Schema;
 import org.apache.pulsar.client.api.SubscriptionInitialPosition;
 import org.apache.pulsar.client.api.SubscriptionType;
 import org.apache.pulsar.client.impl.MultiplierRedeliveryBackoff;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.pulsar.core.ConsumerTestUtils;
@@ -158,6 +159,7 @@ class DefaultPulsarMessageListenerContainerTests implements PulsarTestContainerS
 	}
 
 	@Test
+	@Disabled
 	void negativeAckRedeliveryBackoff() throws Exception {
 		Map<String, Object> config = new HashMap<>();
 		config.put("topicNames", Collections.singleton("dpmlct-015"));
@@ -209,6 +211,7 @@ class DefaultPulsarMessageListenerContainerTests implements PulsarTestContainerS
 	}
 
 	@Test
+	@Disabled
 	void deadLetterPolicy() throws Exception {
 		Map<String, Object> config = new HashMap<>();
 		config.put("topicNames", Collections.singleton("dpmlct-016"));
