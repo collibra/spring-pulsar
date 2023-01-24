@@ -1,0 +1,10 @@
+name: spring-pulsar
+title: Spring Pulsar
+version: latest
+start_page: preface.adoc
+asciidoc:
+  attributes:
+    project-name: spring-pulsar
+
+nav:
+  - modules/ROOT/nav.adoc
