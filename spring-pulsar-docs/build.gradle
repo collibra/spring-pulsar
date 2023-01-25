@@ -189,6 +189,8 @@ gitPublish {
 	}
 
 	preserve {
+		include 'docs/antora.yml'
+		include 'docs/modules/ROOT/nav.adoc'
 		exclude 'docs/modules/ROOT/pages/**'
 	}
 
