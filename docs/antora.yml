@@ -1,5 +1,5 @@
 name: spring-pulsar
-title: Spring Pulsar
+title: Spring Pulsar JDK-11
 version: latest
 start_page: preface.adoc
 asciidoc:
